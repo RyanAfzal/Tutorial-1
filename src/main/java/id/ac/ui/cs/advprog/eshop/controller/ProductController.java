@@ -26,10 +26,10 @@ public class ProductController {
     @PostMapping("/create")
     public String createProductPost(@ModelAttribute Product product, Model model){
         service.create(product);
-        return "redirect:List";
+        return "redirect:list";
     }
 
-    @GetMapping("/List")
+    @GetMapping("/list")
     public String productListPage(Model model){
         List<Product> allProducts = service.findAll();
         model.addAttribute("products",allProducts);

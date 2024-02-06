@@ -6,6 +6,6 @@ import lombok.Setter;
 @Getter @Setter
 public class Product {
     private String productId;
-    private String produtName;
+    private String productName;
     private int productQuantity;
 }
