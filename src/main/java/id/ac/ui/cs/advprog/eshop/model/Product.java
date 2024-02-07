@@ -7,7 +7,7 @@ import java.util.UUID;
 @Getter @Setter
 public class Product {
     private String productId;
-    private String produtName;
+    private String productName;
     private int productQuantity;
 
     public Product() {
