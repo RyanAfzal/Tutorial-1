@@ -63,4 +63,61 @@ class ProductRepositoryTest {
         assertEquals(product2.getProductId(), savedProduct.getProductId());
         assertFalse(productIterator.hasNext());
     }
+
+    @Test
+    void testEditByIdProduct() {
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product.setProductName("God Of War");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        Product findProductById = productRepository.findById(product.getProductId());
+        assertEquals(findProductById.getProductId(), product.getProductId());
+        assertEquals(findProductById.getProductName(), product.getProductName());
+        assertEquals(findProductById.getProductQuantity(), product.getProductQuantity());
+
+        Product editProductData = new Product();
+        editProductData.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        editProductData.setProductName("God Of War 2");
+        editProductData.setProductQuantity(300);
+        productRepository.editProduct(editProductData);
+
+        Product editedProduct = productRepository.findById(editProductData.getProductId());
+        assertEquals(editProductData.getProductId(), editedProduct.getProductId());
+        assertEquals("God Of War 2", editedProduct.getProductName());
+        assertEquals(300, editedProduct.getProductQuantity());
+    }
+
+    @Test
+    void testDeleteProduct() {
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product.setProductName("Resident Evil");
+        product.setProductQuantity(200);
+        productRepository.create(product);
+
+        Product deletedProduct = productRepository.delete(product.getProductId());
+        assertEquals(product, deletedProduct);
+
+        Iterator<Product> productIterator = productRepository.findAll();
+        assertFalse(productIterator.hasNext());
+    }
+
+    @Test
+    void testEditProductNotFound() {
+        Product editedProduct = new Product();
+        editedProduct.setProductId("a0f9de46-90b1-437d-a0bf-d0821dde9096");
+        editedProduct.setProductName("Sampo Cap Mobil");
+        editedProduct.setProductQuantity(150);
+
+        assertThrows(IllegalArgumentException.class, () ->
+                productRepository.editProduct(editedProduct));
+    }
+
+    @Test
+    void testDeleteProductNotFound() {
+        assertThrows(IllegalArgumentException.class, () ->
+                productRepository.delete("6f1238f8-d13a-4e5b-936f-e55156158104"));
+    }
 }
