@@ -14,7 +14,7 @@ class ProductTest {
         this.product.setProductQuantity(100);
     }
     @Test
-    void testGetproductId(){
+    void testGetProductId(){
         assertEquals("eb558e9f-1c39-460e-8860-71af6af63bd6", this.product.getProductId());
     }
 
