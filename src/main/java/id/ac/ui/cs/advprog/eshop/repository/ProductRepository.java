@@ -29,6 +29,21 @@ public class ProductRepository {
         }
         return null;
     }
+
+    public Product editProduct(Product updatedProduct) {
+        for (int i = 0; i < productData.size(); i++) {
+            Product product = productData.get(i);
+            if (product.getProductId().equals(updatedProduct.getProductId())) {
+                // Update the productName and productQuantity
+                product.setProductName(updatedProduct.getProductName());
+                product.setProductQuantity(Math.max(updatedProduct.getProductQuantity(), 0));
+
+                return product; // Return the updated product
+            }
+        }
+        return null; // If product not found
+    }
+    
     public Product delete(String productId) {
         Product deletedProduct = findById(productId);
         productData.remove(deletedProduct);
