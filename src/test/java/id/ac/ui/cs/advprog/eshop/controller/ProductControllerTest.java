@@ -61,4 +61,33 @@ class ProductControllerTest {
         assertEquals("productList", viewName);
         verify(productService).findAll();
     }
+
+    @Test
+    void testEditProductPage() {
+        String productId = "eb558e9f-1c39-460e-8860-71af6af63bd6";
+        when(productService.findById(productId)).thenReturn(product);
+
+        String viewName = productController.editProductPage(productId, model);
+
+        assertEquals("editProduct", viewName);
+        verify(model).addAttribute("product", product);
+    }
+
+    @Test
+    void testEditProductPost() {
+        String redirectURL = productController.editProductPost(product,model);
+
+        assertEquals("redirect:list", redirectURL);
+        verify(productService).editProduct(product);
+    }
+
+    @Test
+    void testDeleteProduct() {
+        String productId = "eb558e9f-1c39-460e-8860-71af6af63bd6";
+
+        String redirectURL = productController.deleteProduct(productId, model);
+
+        assertEquals("redirect:../list", redirectURL);
+        verify(productService).deleteProduct(productId);
+    }
 }
