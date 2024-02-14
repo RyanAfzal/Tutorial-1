@@ -1,5 +1,7 @@
 Ryandhika Al Afzal/ 2206081502/ A
 
+Tutorial 1
+
 Reflection 1
 Menurut saya coding saya masih belum baik, tetapi setidaknya saya sudah lebih baik daripada saat masih di kelas DDP 2. Saat ini code saya sudah sedikit menerapkan prinsip clean code, setelah mengerjakan exercise 1 ini saya sedikit kesulitan karena belum terbiasa dengan syntax java springboot.Contoh clean code yang sudah saya terapkan adalah:
 1. Menuliskan nama variable dan nama function dengan jelas
@@ -14,3 +16,13 @@ setelah menulis unit test saya merasa awalnya unit test ini merepotkan, tetapi j
 2. Suppose that after writing the CreateProductFunctionalTest.java along with the corresponding test case, you were asked to create another functional test suite that verifies the number of items in the product list. You decided to create a new Java class similar to the prior functional test suites with the same setup procedures and instance variables.
    What do you think about the cleanliness of the code of the new functional test suite? Will the new code reduce the code quality? Identify the potential clean code issues, explain the reasons, and suggest possible improvements to make the code cleaner!
 Untuk pertanyaan ini saya belum dapat menjawabnya karena saya belum sepenuhnya selesai membuat Functional Test.
+
+Tutorial 2
+
+Reflection
+
+1. Code qualitiy issue yang saya alami di antaranya : 
+   - masalah permission denied pada gradlew di dockerfile, solusi saya adalah menggunakan perintah chmod +x gradlew
+   - jacoco tidak muncul pada build report, solusi dengan run test jacocoTestReport tetapi test yang fail saya hapus terlebih dahulu
+   - memperbaiki isu sonarcloud dengan memastikan properti yang ada pada sonar sudah sesuai dengan yang ada di sonarcloud, mengubah port yang sebelumnya 8000 menjadi 8080
+2. Menurut saya implementasi saya sudah menerapkan ci/cd karena github akan melakukan test dan code scanning otomatis jika ada push atau pull dengan ada nya workflows ci dan scorecard dan implementasi saat ini juga dapat deploy dan redeploy otomatis dengan platform koyeb jika ada push atau pull dari branch main.
