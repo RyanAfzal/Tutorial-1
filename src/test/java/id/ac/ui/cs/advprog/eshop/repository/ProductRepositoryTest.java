@@ -10,6 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Iterator;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -104,21 +105,47 @@ class ProductRepositoryTest {
         assertFalse(productIterator.hasNext());
     }
 
-    //@Test
-    //void testEditProductNotFound() {
-    //    Product editedProduct = new Product();
-    //    editedProduct.setProductId("a0f9de46-90b1-437d-a0bf-d0821dde9096");
-    //    editedProduct.setProductName("Sampo Cap Mobil");
-    //    editedProduct.setProductQuantity(150);
-    //
-    //    assertThrows(IllegalArgumentException.class, () ->
-    //            productRepository.editProduct(editedProduct));
-    //}
+    @Test
+    void testFindByIdProductIfItDoesNotExist() {
+        Product nokia = new Product();
+        nokia.setProductName("Nokia");
+        nokia.setProductQuantity(200);
+        productRepository.create(nokia);
 
-    //@Test
-    //void testDeleteProductNotFound() {
-    //    assertThrows(IllegalArgumentException.class, () ->
-    //            productRepository.delete("6f1238f8-d13a-4e5b-936f-e55156158104"));
-    //}
+        Product xiaomi = new Product();
+        xiaomi.setProductName("Xiaomi");
+        xiaomi.setProductQuantity(200);
+        productRepository.create(xiaomi);
+
+        String randomId = UUID.randomUUID().toString();
+
+        Product findProduct = productRepository.findById(randomId);
+        assertNull(findProduct);
+    }
+
+    @Test
+    void testEditProductNotFound() {
+        String randomId = UUID.randomUUID().toString();
+
+        Product iphone = new Product();
+        iphone.setProductId(randomId);
+        iphone.setProductName("Iphone");
+        iphone.setProductQuantity(200);
+
+        Product foundedProduct = productRepository.editProduct(iphone);
+        assertNull(foundedProduct);
+    }
+
+    @Test
+    void testDeleteProductNotFound() {
+        Product idLessPhone = new Product();
+        idLessPhone.setProductName("Phone without id");
+        idLessPhone.setProductQuantity(200);
+
+        String randomId = UUID.randomUUID().toString();
+
+        Product foundedProduct = productRepository.delete(randomId);
+        assertNull(foundedProduct);
+    }
 
 }
