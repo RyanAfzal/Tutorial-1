@@ -1,12 +1,11 @@
 package id.ac.ui.cs.advprog.eshop.controller;
-
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.service.ProductService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @Controller
@@ -36,7 +35,7 @@ public class ProductController {
         return "productList";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/edit/{productId}")
     public String editProductPage(@PathVariable("id") String id, Model model) {
         Product product = service.findById(id);
         model.addAttribute("product", product);
@@ -48,10 +47,10 @@ public class ProductController {
         service.editProduct(product);
         return "redirect:list";
     }
-  
-     @GetMapping("/delete/{id}")
+
+    @GetMapping("/delete/{id}")
     public String deleteProduct(@PathVariable("id") String id, Model model) {
-         service.deleteProduct(id);
-         return "redirect:../list";
+        service.deleteProduct(id);
+        return "redirect:../list";
     }
 }
