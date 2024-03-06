@@ -13,4 +13,5 @@ public class Payment {
     private Long orderTime;
     private Map<String, String> paymentData;
 
+    private Order paymentOrder;
 }
