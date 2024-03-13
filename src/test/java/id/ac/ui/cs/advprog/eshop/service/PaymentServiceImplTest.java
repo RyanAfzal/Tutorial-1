@@ -141,12 +141,12 @@ class PaymentServiceImplTest {
         assertEquals(result.getStatusPayment(), StatusPayment.PENDING.getValue());
         paymentService.setStatus(result, StatusPayment.SUCCESS.getValue());
         assertEquals(result.getStatusPayment(), StatusPayment.SUCCESS.getValue());
-        assertEquals(OrderStatus.SUCCESS.getValue(), result.getPaymentOrder().getOrderStatus());
+        assertEquals(OrderStatus.SUCCESS.getValue(), result.getPaymentOrder().getStatus());
         assertEquals(PaymentMethod.BANK_TRANSFER.getValue(), result.getPaymentMethod());
 
         paymentService.setStatus(result, StatusPayment.REJECTED.getValue());
         assertEquals(result.getStatusPayment(), StatusPayment.REJECTED.getValue());
-        assertEquals(OrderStatus.FAILED.getValue(), result.getPaymentOrder().getOrderStatus());
+        assertEquals(OrderStatus.FAILED.getValue(), result.getPaymentOrder().getStatus());
         assertEquals(PaymentMethod.BANK_TRANSFER.getValue(), result.getPaymentMethod());
     }
 
@@ -166,12 +166,12 @@ class PaymentServiceImplTest {
         assertEquals(result.getStatusPayment(), StatusPayment.PENDING.getValue());
         paymentService.setStatus(result, StatusPayment.SUCCESS.getValue());
         assertEquals(result.getStatusPayment(), StatusPayment.SUCCESS.getValue());
-        assertEquals(OrderStatus.SUCCESS.getValue(), result.getPaymentOrder().getOrderStatus());
+        assertEquals(OrderStatus.SUCCESS.getValue(), result.getPaymentOrder().getStatus());
         assertEquals(PaymentMethod.VOUCHER.getValue(), result.getPaymentMethod());
 
         paymentService.setStatus(result, StatusPayment.REJECTED.getValue());
         assertEquals(result.getStatusPayment(), StatusPayment.REJECTED.getValue());
-        assertEquals(OrderStatus.FAILED.getValue(), result.getPaymentOrder().getOrderStatus());
+        assertEquals(OrderStatus.FAILED.getValue(), result.getPaymentOrder().getStatus());
         assertEquals(PaymentMethod.VOUCHER.getValue(), result.getPaymentMethod());
     }
 

@@ -1,13 +1,14 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Map;
 
 import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 import id.ac.ui.cs.advprog.eshop.enums.StatusPayment;
 
-@Getter
+@Getter @Setter
 public class Payment {
     private String paymentId;
     private String paymentMethod;

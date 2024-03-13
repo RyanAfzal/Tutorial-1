@@ -17,12 +17,13 @@ import id.ac.ui.cs.advprog.eshop.enums.OrderStatus;
 import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 import id.ac.ui.cs.advprog.eshop.enums.StatusPayment;
 import id.ac.ui.cs.advprog.eshop.model.BankTransfer;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PaymentServiceImpl implements PaymentService {
 
     @Autowired
     private PaymentRepository paymentRepository;
-    @Autowired
 
     @Override
     public Payment addPayment(Order order, String method, Map<String, String> data) {
@@ -58,9 +59,9 @@ public class PaymentServiceImpl implements PaymentService {
         }
 
         if (payment.getStatusPayment().equals(StatusPayment.SUCCESS.getValue())){
-            payment.getPaymentOrder().setOrderStatus(OrderStatus.SUCCESS.getValue());
+            payment.getPaymentOrder().setStatus(OrderStatus.SUCCESS.getValue());
         }else if(payment.getStatusPayment().equals(StatusPayment.REJECTED.getValue())){
-            payment.getPaymentOrder().setOrderStatus(OrderStatus.FAILED.getValue());
+            payment.getPaymentOrder().setStatus(OrderStatus.FAILED.getValue());
         } else {
             throw new IllegalArgumentException("Invalid payment status");
         }
